@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/baseLayout}">
+
+<style>
+	.cursor_pointer {
+		cursor: pointer;
+		background-color: rgb(128, 255, 255);
+	}
+</style>
+
+<th:block layout:fragment="script" >
+	<script th:src="@{/js/vendor/axios.min.js}"></script>
+	<script th:src="@{/js/vendor/jquery-3.6.0.min.js}"></script>
+	<script th:src="@{/js/list.js}"></script>
+</th:block>
+
+<body>
+  <div layout:fragment="content">
+  	<th:block th:fragment="titleListButton">
+  		<div th:object="${param2}">
+			<h3>
+				<a th:href="cate.do"
+					target="cat">TOP</a> &gt;
+				<a th:href="|list.do?baseName=*{baseName}&cat=*{cat}|"
+					target="cat">[[|*{baseName}::*{cat}|]]</a>
+			</h3>
+	  		<h6 class="copyPath" th:text="${param2.getFullParentPath()}">base name</h6>
+  		</div>
+  	</th:block>
+    <th:block th:each="dir,numStat : ${dirList}" th:object="${param2}">
+      <a
+      	th:if="${#strings.isEmpty(param2.cat)}"
+      	th:href="|main2.do?baseName=*{baseName}&cat=*{cat}&listName=${#uris.escapePath(dir.url)}|"
+      	th:text="${dir.name}"
+      	target="main">&nbsp;</a>
+      <a
+      	th:unless="${#strings.isEmpty(param2.cat)}"
+      	th:href="|sub-list.do?baseName=*{baseName}&cat=*{cat}&listName=${#uris.escapePath(dir.url)}|"
+      	th:text="${dir.name}">&nbsp;</a>
+      <br/><span th:text="${dir.lastDate}"></span>
+      <br/>
+    </th:block>
+  	<th:block th:include="this::titleListButton" />
+  </div>
+</body>
+
+</html>

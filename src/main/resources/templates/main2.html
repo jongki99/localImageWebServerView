@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout/baseLayout}">
+<head>
+<style>
+html {
+    display: block;
+}
+img {
+    text-align: center;
+    display: block;
+}
+</style>
+	<link rel="stylesheet" href="/viewerjs-docs/css/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="/viewerjs-docs/css/viewer.css">
+	<link rel="stylesheet" href="/viewerjs-docs/css/main.css">
+	
+	<script th:src="@{/js/vendor/jquery-3.6.0.min.js}"></script>
+	<script th:src="@{/js/vendor/jquery.cookie.js}"></script>
+	<style>
+		.container {padding-right: 0; padding-left: 0; margin-left:0; margin-right:0; max-width:100000px;}
+	</style>
+</head>
+<body>
+  
+  <div layout:fragment="content">
+    <div class="docs-pictures">
+ 		<th:block th:each="dir,numStat : ${imgList}">
+  			<img
+				th:object="${param2}"
+				th:src="|download.do?baseName=*{baseName}&cat=*{cat}&listName=*{listNameUrl}&listSubName=&imgFileName=${dir.url}|"
+				th:data-original="|download.do?baseName=*{baseName}&cat=*{cat}&listName=*{listNameUrl}&listSubName=&imgFileName=${dir.url}|"
+				style="width:100%;" 
+  			/>
+ 		</th:block>
+ 	</div>
+  	<th:block th:include="main::viewerOption" />
+	<script th:src="@{/viewerjs-docs/js/viewer.js}"></script>
+	<script th:src="@{/viewerjs-docs/js/main.js}"></script>
+  </div>
+</body>
+</html>

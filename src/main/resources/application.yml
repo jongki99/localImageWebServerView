@@ -1,0 +1,26 @@
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+  application:
+    base-package: kongkk.webtoon.viewer
+  config:
+    location: classpath:/config/application-${spring.profiles.active}.yml
+data:
+  base-folders:
+    - folder:
+      path: H:/hitomi_downloader_GUI
+      remote: null
+    - folder:
+      path: contents/hitomi_downloader_GUI
+      remote: jongki99
+    - folder:
+      path: V:/hitomi_downloader_GUI
+      remote: null
+env:
+  swagger:
+    host: localhost:8181
+server.port: 8180
+logging:
+  level:
+    root: error
+    kongkk: error

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout/baseLayout}">
+<body>    
+  <div layout:fragment="content">
+    <th:block th:each="dir,numStat : ${dirList}">
+      <a th:object="${dir}"
+      	th:href="|list.do?baseName=*{baseName}&cat=*{cat}|"
+      	th:text="|*{baseName}:*{cat}|"
+      >&nbsp;</a><br/>
+    </th:block>
+  </div>
+</body>
+</html>

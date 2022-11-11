@@ -1,0 +1,34 @@
+obj1:
+  messageType: '0200'
+  tradeTypeCd: '000010'
+  tradeAmt: '8000'
+  transDtm: '20210417011718'
+  cardNum: '2493117763020512'
+  tradeUniqNo: '670000000001'
+  terminal: '1000000000'
+  coCd: V253
+  goodsCd: '1001'
+  userIdTypeCd: '05'
+  currCd: '410'
+  mpPointUseAmt: null
+obj2:
+  messageType: '0210'
+  tradeTypeCd: '000010'
+  tradeAmt: 8000
+  mpPointUseAmt: '000000010000'
+  transDtm: '20210417011718'
+  cardNum: '2493117763020512'
+  tradeUniqNo: '670000000001'
+  terminal: '10000000  '
+  coCd: '  10000000'
+  goodsCd: 00MA
+  responCd: '00'
+  responCdDesc: '000000'
+  approNo: '00000000'
+  rainbowPtYn: '00'
+  dcAmt: 0
+  payAmt: 0
+  remainMpPt: 0
+  boostUpPt: 0
+  accuMpPt: 0
+  cocdBarcode: '                          '

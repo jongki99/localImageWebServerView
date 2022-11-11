@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html
+    lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>T 멤버십</title>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta http-equiv="X-UA-compatible" content="IE=edge,chrome=1">
+    
+    <!--/* javascript */-->
+	<script th:src="@{/js/vendor/axios.min.js}"></script>
+	<script th:src="@{/js/vendor/jquery-3.6.0.min.js}"></script>
+	<script th:src="@{/js/vendor/jquery.cookie.js}"></script>
+	<script th:src="@{/js/list.js}"></script>
+	
+    <!--/* Common JS */-->
+	<script type="text/javascript" >
+		$(function() {
+			$('.copyPath').click(function() {
+				alert($(this).text());
+				copy($(this).text());
+			});
+		});
+		function copy(str2) {
+			var str = null;
+			if ( ! str2 ) {
+				str = $('.copyPath').get(0).val();
+			} else {
+				str = str2;
+			}
+			copyStringToClipboard(str);
+		}
+		function copyStringToClipboard(string) {
+			function handler(event) {
+				event.clipboardData.setData('text/plain', string);
+				event.preventDefault();
+				document.removeEventListener('copy', handler, true);
+			}
+			document.addEventListener('copy',handler, true);
+			document.execCommand('copy');
+		}
+	</script>
+    <script th:inline="javascript">
+    </script>
+	<style>
+		img {
+		    text-align: center;
+		    display: block;
+		}
+	</style>
+</head>
+<body>
+    <div class="wrap">
+        <!--/* header */-->
+        <th:block layout:fragment="header" />
+
+        <!--/* content */-->
+        <div class="container" th:classappend="${containerClass}">
+            <div layout:fragment="content"></div>
+        </div>
+        
+        <!--/* footer */-->
+        
+        <script type="text/javascript" layout:fragment="script" th:inline="javascript">
+        </script>
+    </div>
+    <div class="toast01" data-toast="toastContainer" data-timer="3000" data-duration="800" data-pos="-28">
+        <span id="toastContainer"></span>
+    </div>
+</body>
+</html>

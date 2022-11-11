@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout/baseLayout}">
+
+<body>
+  <div layout:fragment="content">
+  	<th:block th:fragment="goListButton">
+		<div th:object="${param2}" style="font-size: 20px;">
+			<h4>
+				<a th:href="cate.do" target="cat">TOP</a> &gt;
+				<a th:href="|list.do?baseName=*{baseName}&cat=*{cat}|"
+					target="cat"
+					th:text="|*{baseName}::*{cat}|">category page</a> &gt;
+				<a th:href="|sub-list.do?baseName=*{baseName}&cat=*{cat}&listName=*{listNameUrl}|"
+					target="cat"
+					th:text="*{#uris.unescapePath(listName)}">현재 페이지</a>
+			</h4>
+	  		<h6 class="copyPath" th:text="${param2.getFullParentPath()}">base name</h6>
+	  	</div>
+  	</th:block>
+    <th:block th:each="dir,numStat : ${dirSubList}">
+     	<a
+     		th:object="${param2}"
+     		th:href="|main.do?baseName=*{baseName}&cat=*{cat}&listName=*{#uris.escapePath(listNameUrl)}&listSubName=${#uris.escapePath(dir.url)}|"
+     		th:text="${dir.name}"
+     		target="main"
+     	>&nbsp;</a>
+     	<br/><span th:text="${dir.lastDate}"></span>
+     	<br/>
+    </th:block>
+  	<th:block th:include="this::goListButton" />
+  </div>
+</body>
+</html>
